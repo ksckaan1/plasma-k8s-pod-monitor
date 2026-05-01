@@ -1,0 +1,32 @@
+{
+	"KPackageStructure": "Plasma/Applet",
+	"X-Plasma-API": "declarativeappletscript",
+	"X-Plasma-API-Minimum-Version": "6.0",
+	"X-Plasma-MainScript": "ui/main.qml",
+	"KPlugin": {
+		"Name": "k8s Pod Monitor",
+		"Description": "Lists pods in your k8s cluster.",
+		"Id": "com.kaanksc.plasma-k8s-pod-monitor",
+		"Version": "1.0",
+		"Website": "https://github.com/ksckaan1/plasma-k8s-pod-monitor",
+		"Category": "Utilities",
+		"License": "GPL-3.0+",
+		"Authors": [
+			{
+				"Name": "Kaan Kuscu",
+				"Email": "me@kaanksc.com"
+			}
+		],
+		"Icon": "globe",
+		"EnabledByDefault": true
+	},
+	"X-Plasma-ConfigModel": [
+		{
+			"Key": "General",
+			"Name": "General",
+			"Name[tr]": "Genel",
+			"Icon": "settings-configure",
+			"Source": "ui/config/ConfigGeneral.qml"
+		}
+	]
+}
