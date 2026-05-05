@@ -1,5 +1,7 @@
 # Plasma K8s Pod Monitor
 
+![ss1](img/logo.png)
+
 KDE Plasma 6 widget to monitor Kubernetes pod statuses.
 
 [Click to see in store](https://store.kde.org/p/2357850)
