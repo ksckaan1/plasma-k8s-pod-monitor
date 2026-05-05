@@ -8,8 +8,8 @@ PlasmoidItem {
     id: root
 
     preferredRepresentation: fullRepresentation
-    implicitWidth: 560
-    implicitHeight: 320
+    implicitWidth: 650
+    implicitHeight: 350
 
     Plasma5Support.DataSource {
         id: executable
@@ -47,7 +47,7 @@ PlasmoidItem {
     onKubectlCmdChanged: executable.run(kubectlCmd)
 
     Timer {
-        interval: 10000
+        interval: Plasmoid.configuration.interval * 1000
         running: true
         repeat: true
         triggeredOnStart: true
@@ -61,11 +61,11 @@ PlasmoidItem {
     property string lastUpdated: "--:--:--"
     property string errorText: ""
 
-    readonly property int colNamespace: 120
+    readonly property int colNamespace: 80
     readonly property int colName: 180
     readonly property int colReady: 55
-    readonly property int colStatus: 130
-    readonly property int colRestarts: 80
+    readonly property int colStatus: 90
+    readonly property int colRestarts: 100
     readonly property int colAge: 60
 
     function parsePods(raw) {
@@ -125,7 +125,6 @@ PlasmoidItem {
                 anchors.margins: 16
                 spacing: 10
 
-                // ── Başlık ──────────────────────────────────────────
                 RowLayout {
                     Layout.fillWidth: true
 
@@ -171,14 +170,12 @@ PlasmoidItem {
                     }
                 }
 
-                // ── Ayraç ───────────────────────────────────────────
                 Rectangle {
                     Layout.fillWidth: true
                     height: 1
                     color: Qt.rgba(1, 1, 1, 0.07)
                 }
 
-                // ── Tablo başlığı ────────────────────────────────────
                 Row {
                     Layout.fillWidth: true
                     leftPadding: 8
@@ -228,7 +225,6 @@ PlasmoidItem {
                     }
                 }
 
-                // ── Hata ─────────────────────────────────────────────
                 Text {
                     visible: root.errorText !== ""
                     text: root.errorText
@@ -238,7 +234,6 @@ PlasmoidItem {
                     Layout.fillWidth: true
                 }
 
-                // ── Pod listesi ───────────────────────────────────────
                 ListView {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
@@ -269,28 +264,27 @@ PlasmoidItem {
                             anchors.leftMargin: 8
                             spacing: 0
 
-                            // NAMESPACE (sadece -A modunda)
                             Text {
                                 visible: root.allNamespaces
                                 width: root.colNamespace
                                 text: model.podNamespace
                                 font.pixelSize: 12
+                                rightPadding: 4
                                 font.family: "monospace"
                                 color: "#818cf8"
                                 elide: Text.ElideRight
                             }
 
-                            // NAME
                             Text {
                                 width: root.colName
                                 text: model.podName
                                 font.pixelSize: 12
+                                rightPadding: 4
                                 font.family: "monospace"
                                 color: "#cbd5e1"
                                 elide: Text.ElideRight
                             }
 
-                            // READY
                             Text {
                                 width: root.colReady
                                 text: model.ready
@@ -302,7 +296,6 @@ PlasmoidItem {
                                 }
                             }
 
-                            // STATUS
                             Row {
                                 width: root.colStatus
                                 spacing: 6
@@ -341,7 +334,6 @@ PlasmoidItem {
                                 }
                             }
 
-                            // RESTARTS
                             Text {
                                 width: root.colRestarts
                                 text: model.restarts
@@ -351,7 +343,6 @@ PlasmoidItem {
                                 elide: Text.ElideRight
                             }
 
-                            // AGE
                             Text {
                                 width: root.colAge
                                 text: model.age
